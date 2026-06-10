@@ -97,7 +97,7 @@ function SignIn() {
           Foodcluster
         </h1>
         <p className="text-gray-600 mb-8 ">
-          Sign In your account to get started with delicious food deliveries{" "}
+          Sign In your Account to get started with delicious food deliveries{" "}
         </p>
 
         <div className="mb-4">
