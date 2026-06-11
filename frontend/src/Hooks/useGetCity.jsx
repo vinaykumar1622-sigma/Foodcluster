@@ -2,7 +2,12 @@ import React from "react";
 import { useEffect } from "react";
 import { serverUrl } from "../App";
 import { useDispatch, useSelector } from "react-redux";
-import { setCity, setUserData } from "../redux/userSlice";
+import {
+  setCurrentAddress,
+  setCurrentCity,
+  setCurrentState,
+  setUserData,
+} from "../redux/userSlice";
 import axios from "axios";
 
 function useGetCity() {
@@ -17,7 +22,14 @@ function useGetCity() {
         `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&format=json&apiKey=${apikey}`,
       );
 
-      dispatch(setCity(result?.data?.results[0].city));
+      dispatch(setCurrentCity(result?.data?.results[0].city));
+      dispatch(setCurrentState(result?.data?.results[0].state));
+      dispatch(
+        setCurrentAddress(
+          result?.data?.results[0].address_line2 ||
+            result?.data?.results[0].address_line1,
+        ),
+      );
     });
   }, [userData]);
 }
